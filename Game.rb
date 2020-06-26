@@ -14,12 +14,8 @@ class Game
   end
 
   def next_position(board)
-    board.each do |row|
-      row.each do |cell|
-        cell.neighbors = Neighbors.search(board, cell.position_x, cell.position_y)
-        cell.value = cell.next_state
-      end
-    end
+    board.map {|row| row.map {|cell| cell.neighbors = Neighbors.search(board, cell.position_x, cell.position_y)}}
+    board.map {|row| row.map {|cell| cell.value = cell.next_state }}
   end
 end
 
